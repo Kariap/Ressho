@@ -30,6 +30,9 @@ public class ProductsResellerAdapters extends RecyclerView.Adapter<ProductsResel
         Product product=products.get(position);
         holder.productPrice.setText("\u20B9 "+product.getPrice());
         holder.sellerName.setText(product.getSeller());
+        holder.productRatings.setText(product.getRating().toString());
+        holder.productName.setText(product.getProductName());
+        holder.productMRP.setText("\u20B9 "+product.getProductMRP());
     }
     public void setProducts(List<Product> products) {
         this.products=products;
@@ -43,10 +46,16 @@ public class ProductsResellerAdapters extends RecyclerView.Adapter<ProductsResel
     public class ProductViewHolder extends RecyclerView.ViewHolder {
         private TextView sellerName;
         private TextView productPrice;
+        private TextView productName;
+        private TextView productRatings;
+        private TextView productMRP;
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             sellerName=itemView.findViewById(R.id.product_seller);
             productPrice=itemView.findViewById(R.id.product_price);
+            productName=itemView.findViewById(R.id.product_name);
+            productRatings=itemView.findViewById(R.id.product_ratings);
+            productMRP=itemView.findViewById(R.id.product_mrp);
         }
     }
 }

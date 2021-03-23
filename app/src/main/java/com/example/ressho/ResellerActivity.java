@@ -1,11 +1,15 @@
 package com.example.ressho;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.example.ressho.adapters.ProductsResellerAdapters;
 import com.example.ressho.api.ResshoAPI;
@@ -26,15 +30,20 @@ private ProductsResellerAdapters productsAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reseller);
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setTitle("Hi Suresh!");
+        actionBar.setDisplayHomeAsUpEnabled(true);
         rvProducts=findViewById(R.id.rv_products_all);
         productsAdapter=new ProductsResellerAdapters();
         rvProducts.setAdapter(productsAdapter);
         rvProducts.setLayoutManager(new LinearLayoutManager(this));
-
+        rvProducts.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         ResshoAPI apiClient=RetrofitInstance.getRetrofitInstance().create(ResshoAPI.class);
         apiClient.getProducts().enqueue(new Callback<ProductsResponse>() {
             @Override
             public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
+                findViewById(R.id.progress).setVisibility(View.GONE);
+                rvProducts.setVisibility(View.VISIBLE);
                 ProductsResponse productsResponse=response.body();
                 productsAdapter.setProducts(productsResponse.getProducts());
             }
@@ -44,5 +53,13 @@ private ProductsResellerAdapters productsAdapter;
 
             }
         });
+    }
+    public boolean onOptionsItemSelected(final MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
