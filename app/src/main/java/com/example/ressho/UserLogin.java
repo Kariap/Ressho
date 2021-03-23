@@ -19,10 +19,10 @@ public class UserLogin extends AppCompatActivity {
         btnSellerLogin=findViewById(R.id.btn_seller_login);
 
         //Starts reseller activity
-        btnSellerLogin.setOnClickListener(new View.OnClickListener() {
+        btnResellerLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserLogin.this,UserLogin.class));
+                startActivity(new Intent(UserLogin.this,ResellerActivity.class));
             }
         });
 
