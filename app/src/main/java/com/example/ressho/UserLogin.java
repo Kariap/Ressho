@@ -30,7 +30,7 @@ public class UserLogin extends AppCompatActivity {
         btnSellerLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserLogin.this,UserLogin.class));
+                startActivity(new Intent(UserLogin.this,SellerActivity.class));
             }
         });
     }
