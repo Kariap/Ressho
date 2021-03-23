@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Ressho</string>
+    <string name="login_instruction">Please Login to Seller or Reseller account.</string>
 </resources>
