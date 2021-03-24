@@ -62,8 +62,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <RatingBar
-        android:scaleX="0.9"
-        android:scaleY="0.9"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
         android:layout_margin="8dp"
         android:id="@+id/order_rating"
         android:numStars="5"

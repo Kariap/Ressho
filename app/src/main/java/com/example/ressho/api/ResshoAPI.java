@@ -1,5 +1,6 @@
 package com.example.ressho.api;
 
+import com.example.ressho.responses.OrdersResponse;
 import com.example.ressho.responses.ProductsResponse;
 
 import okhttp3.ResponseBody;
@@ -21,5 +22,5 @@ public interface ResshoAPI {
     Call<ResponseBody> postNewOrder();
 
     @GET("/reseller/orders")
-    Call<ProductsResponse> getResellerOrders(@Query("reseller") String reseller);
+    Call<OrdersResponse> getResellerOrders(@Query("reseller") String reseller);
 }
