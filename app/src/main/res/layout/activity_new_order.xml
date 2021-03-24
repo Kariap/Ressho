@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewOrder">
+    <TextView
+
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="sans-serif-black"
+        android:text="Select Payment method:"
+        android:textSize="24sp"
+        android:id="@+id/label_payment"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <RadioGroup
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:id="@+id/payment_options"
+        app:layout_constraintTop_toBottomOf="@id/label_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:padding="8dp"
+            android:id="@+id/online_payment"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-light"
+            android:text="Online"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:padding="8dp"
+            android:textSize="20sp"
+            android:id="@+id/cash_payment"
+            android:fontFamily="sans-serif-light"
+            android:text="Cash on Delivery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RadioGroup>
+    <TextView
+        android:id="@+id/divider_payment"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/payment_options"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+    <TextView
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="sans-serif-black"
+        android:text="Set customer price:"
+        android:textSize="24sp"
+        android:id="@+id/label_commission"
+        app:layout_constraintTop_toTopOf="@id/et_customer_price"
+        app:layout_constraintBottom_toBottomOf="@id/et_customer_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:layout_marginLeft="12dp"
+        app:layout_constraintLeft_toRightOf="@id/label_commission"
+        app:layout_constraintTop_toTopOf="@id/et_customer_price"
+        app:layout_constraintBottom_toBottomOf="@id/et_customer_price"
+        android:id="@+id/rupee_symbol"
+        android:text="\u20B9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_corners_et"
+        android:hint="122"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/et_customer_price"
+        android:textSize="20sp"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toTopOf="@id/divider_payment"
+        app:layout_constraintLeft_toRightOf="@id/rupee_symbol"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="12dp" />
+    <TextView
+        android:id="@+id/divider_customer_price"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/et_customer_price"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+    <TextView
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="sans-serif-black"
+        android:text="Customer name:"
+        android:textSize="24sp"
+        android:id="@+id/label_customer_name"
+        app:layout_constraintTop_toTopOf="@id/et_customer_name"
+        app:layout_constraintBottom_toBottomOf="@id/et_customer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"        android:background="@drawable/rounded_corners_et"
+        android:hint="Post Malone"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/et_customer_name"
+        android:textSize="20sp"
+        android:inputType="text"
+        app:layout_constraintTop_toTopOf="@id/divider_customer_price"
+        app:layout_constraintLeft_toRightOf="@id/label_customer_name"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="12dp" />
+    <TextView
+        android:id="@+id/divider_customer_name"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/et_customer_name"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+    <TextView
+        android:layout_marginTop="12dp"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="sans-serif-black"
+        android:text="Set customer address:"
+        android:textSize="24sp"
+        android:id="@+id/label_address"
+        app:layout_constraintTop_toBottomOf="@id/divider_customer_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"        android:background="@drawable/rounded_corners_et"
+        android:hint="201 suraj appartments,Bandra,Mumbai"
+        android:id="@+id/et_customer_address"
+        android:inputType="numberDecimal"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/label_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp" />
+
+    <LinearLayout
+        android:layout_marginTop="28dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/et_customer_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:textAllCaps="false"
+            android:textSize="@dimen/button_text_small"
+            android:textColor="@android:color/white"
+            android:text="Cancel"
+            android:background="@drawable/rounded_corners"
+            android:id="@+id/cancel_button"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:textAllCaps="false"
+            android:textSize="@dimen/button_text_small"
+            android:textColor="@android:color/white"
+            android:text="Place Order"
+            android:background="@drawable/rounded_corners"
+            android:id="@+id/place_order"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
