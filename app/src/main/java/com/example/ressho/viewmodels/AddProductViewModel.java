@@ -1,13 +1,8 @@
 package com.example.ressho.viewmodels;
 
-import android.view.View;
-import android.widget.Toast;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.example.ressho.AddProduct;
 
 public class AddProductViewModel extends ViewModel {
     private MutableLiveData<String> message=new MutableLiveData<>();

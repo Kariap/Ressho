@@ -1,4 +1,4 @@
-package com.example.ressho;
+package com.example.ressho.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -10,9 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ressho.R;
 import com.example.ressho.viewmodels.AddProductViewModel;
 
-public class AddProduct extends AppCompatActivity {
+public class AddProductActivity extends AppCompatActivity {
     private EditText productName;
     private EditText productPrice;
     private EditText productMrp;
@@ -50,7 +51,7 @@ public class AddProduct extends AppCompatActivity {
             @Override
             public void onChanged(String message) {
                 if(message!=null){
-                    Toast.makeText(AddProduct.this,message,Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddProductActivity.this,message,Toast.LENGTH_LONG).show();
                     addProductViewModel.setMessageShownAsTrue();
                 }
             }

@@ -1,24 +1,17 @@
 package com.example.ressho.repository;
 
-import android.content.Intent;
-import android.util.Base64;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.ressho.R;
-import com.example.ressho.ResellerActivity;
-import com.example.ressho.RetrofitService;
-import com.example.ressho.SellerActivity;
-import com.example.ressho.UserLogin;
-import com.example.ressho.api.ResshoAPI;
+import com.example.ressho.networking.RetrofitService;
+import com.example.ressho.networking.ResshoAPI;
+import com.example.ressho.models.Order;
 import com.example.ressho.models.Product;
+import com.example.ressho.responses.OrdersResponse;
 import com.example.ressho.responses.ProductsResponse;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -32,6 +25,7 @@ public class ResshoRepository {
     private static final ResshoRepository repo = new ResshoRepository();
     private MutableLiveData<Response> loginResponse=new MutableLiveData<>();
     private MutableLiveData<List<Product>> products=new MutableLiveData<>();
+    private MutableLiveData<List<Order>> orders=new MutableLiveData<>();
 
     public ResshoRepository() {
         resshoAPI=RetrofitService.getRetrofitInstance().create(ResshoAPI.class);
@@ -85,5 +79,19 @@ public class ResshoRepository {
             }
         });
         return products;
+    }
+    public LiveData<List<Order>> getOrders(String reseller){
+        resshoAPI.getResellerOrders(reseller).enqueue(new Callback<OrdersResponse>() {
+            @Override
+            public void onResponse(Call<OrdersResponse> call, Response<OrdersResponse> response) {
+                orders.setValue(response.body().getOrders());
+            }
+
+            @Override
+            public void onFailure(Call<OrdersResponse> call, Throwable t) {
+                orders.setValue(null);
+            }
+        });
+        return orders;
     }
 }

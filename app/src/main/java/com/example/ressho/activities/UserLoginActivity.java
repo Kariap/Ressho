@@ -1,4 +1,4 @@
-package com.example.ressho;
+package com.example.ressho.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -9,19 +9,19 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ressho.R;
 import com.example.ressho.viewmodels.UserLoginViewModel;
 
 import java.io.UnsupportedEncodingException;
 
 import retrofit2.Response;
 
-public class UserLogin extends AppCompatActivity {
+public class UserLoginActivity extends AppCompatActivity {
     private Button btnSellerLogin;
     private Button btnResellerLogin;
     private EditText userName;
@@ -61,15 +61,15 @@ public class UserLogin extends AppCompatActivity {
                 if (response.code() == 200) {
                     setPrefForLoggedInType(type);
                     if (type.equals("loggedInReseller")) {
-                        startActivity(new Intent(UserLogin.this, ResellerActivity.class));
+                        startActivity(new Intent(UserLoginActivity.this, ResellerActivity.class));
                     } else {
-                        startActivity(new Intent(UserLogin.this, SellerActivity.class));
+                        startActivity(new Intent(UserLoginActivity.this, SellerActivity.class));
                     }
                     finish();
                 } else if (response.code() == 401) {
-                    Toast.makeText(UserLogin.this, "Incorrect password or username", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UserLoginActivity.this, "Incorrect password or username", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(UserLogin.this, "Please check your internet connection", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UserLoginActivity.this, "Please check your internet connection", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -90,7 +90,7 @@ public class UserLogin extends AppCompatActivity {
     }
 
     private void setPrefForLoggedInType(String type) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(UserLogin.this);
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(UserLoginActivity.this);
             SharedPreferences.Editor editor=prefs.edit();
             editor.putBoolean(type,true);
             editor.apply();

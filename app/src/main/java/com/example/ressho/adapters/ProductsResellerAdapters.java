@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ressho.NewOrder;
+import com.example.ressho.activities.NewOrderActivity;
 import com.example.ressho.R;
 import com.example.ressho.models.Product;
 
@@ -57,7 +57,7 @@ public class ProductsResellerAdapters extends RecyclerView.Adapter<ProductsResel
         holder.orderNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, NewOrder.class));
+                context.startActivity(new Intent(context, NewOrderActivity.class));
             }
         });
     }

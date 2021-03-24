@@ -11,19 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreen">
+        <activity android:name=".activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StatusOfOrders" />
-        <activity android:name=".NewOrder" />
-        <activity android:name=".AddProduct" />
-        <activity android:name=".ResellerActivity" />
-        <activity android:name=".SellerActivity" />
-        <activity android:name=".UserLogin"/>
+        <activity android:name=".activities.StatusOfOrdersActivity" />
+        <activity android:name=".activities.NewOrderActivity" />
+        <activity android:name=".activities.AddProductActivity" />
+        <activity android:name=".activities.ResellerActivity" />
+        <activity android:name=".activities.SellerActivity" />
+        <activity android:name=".activities.UserLoginActivity"/>
 
     </application>
 

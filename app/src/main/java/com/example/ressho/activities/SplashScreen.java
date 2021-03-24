@@ -1,4 +1,4 @@
-package com.example.ressho;
+package com.example.ressho.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+
+import com.example.ressho.R;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -32,7 +34,7 @@ public class SplashScreen extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 }else{
-                    Intent i = new Intent(SplashScreen.this, UserLogin.class);
+                    Intent i = new Intent(SplashScreen.this, UserLoginActivity.class);
                     startActivity(i);
                     finish();
                 }

@@ -1,4 +1,4 @@
-package com.example.ressho;
+package com.example.ressho.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,9 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-public class NewOrder extends AppCompatActivity {
+import com.example.ressho.R;
+
+public class NewOrderActivity extends AppCompatActivity {
     private EditText etPrice;
     private EditText etCustomerName;
     private EditText etCustomerAddress;
@@ -53,17 +55,19 @@ public class NewOrder extends AppCompatActivity {
                 String price=etPrice.getText().toString();
                 String customerName=etCustomerName.getText().toString();
                 String customerAddress=etCustomerAddress.getText().toString();
-                if(isDetailsValid(customerName,customerAddress,price,cashOnDelivery)){
-                    Toast.makeText(NewOrder.this,"Order placed",Toast.LENGTH_LONG).show();
+                if(areDetailsValid(customerName,customerAddress,price,cashOnDelivery)){
+                    Toast.makeText(NewOrderActivity.this,"Order placed.",Toast.LENGTH_LONG).show();
                     finish();
+                }else{
+                    Toast.makeText(NewOrderActivity.this,"Please fill all the details.",Toast.LENGTH_LONG).show();
                 }
             }
         });
 
     }
 
-    private Boolean isDetailsValid(String customerName, String customerAddress, String price, Boolean cashOnDelivery) {
-        return true;
+    private Boolean areDetailsValid(String customerName, String customerAddress, String price, Boolean cashOnDelivery) {
+        return !customerAddress.isEmpty() && !customerName.isEmpty() && !price.isEmpty();
     }
 
     public boolean onOptionsItemSelected(final MenuItem item) {

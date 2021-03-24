@@ -1,4 +1,4 @@
-package com.example.ressho;
+package com.example.ressho.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,18 +18,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.ressho.R;
 import com.example.ressho.adapters.ProductsSellerAdapters;
-import com.example.ressho.api.ResshoAPI;
 import com.example.ressho.models.Product;
-import com.example.ressho.responses.ProductsResponse;
 import com.example.ressho.viewmodels.SellerViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class SellerActivity extends AppCompatActivity {
     private RecyclerView rvProducts;
@@ -68,7 +63,7 @@ public class SellerActivity extends AppCompatActivity {
         btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SellerActivity.this,AddProduct.class));
+                startActivity(new Intent(SellerActivity.this, AddProductActivity.class));
             }
         });
 
@@ -91,7 +86,7 @@ public class SellerActivity extends AppCompatActivity {
             SharedPreferences.Editor editor=prefs.edit();
             editor.putBoolean("loggedInSeller",false);
             editor.apply();
-            startActivity(new Intent(SellerActivity.this,UserLogin.class));
+            startActivity(new Intent(SellerActivity.this, UserLoginActivity.class));
             finish();
         }
         return super.onOptionsItemSelected(item);

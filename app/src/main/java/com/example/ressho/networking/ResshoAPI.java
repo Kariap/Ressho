@@ -1,4 +1,4 @@
-package com.example.ressho.api;
+package com.example.ressho.networking;
 
 import com.example.ressho.responses.OrdersResponse;
 import com.example.ressho.responses.ProductsResponse;

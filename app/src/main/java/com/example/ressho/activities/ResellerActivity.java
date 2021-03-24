@@ -1,4 +1,4 @@
-package com.example.ressho;
+package com.example.ressho.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,17 +17,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.ressho.R;
 import com.example.ressho.adapters.ProductsResellerAdapters;
-import com.example.ressho.api.ResshoAPI;
 import com.example.ressho.models.Product;
-import com.example.ressho.responses.ProductsResponse;
 import com.example.ressho.viewmodels.ResellerViewModel;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ResellerActivity extends AppCompatActivity {
 private RecyclerView rvProducts;
@@ -70,13 +65,13 @@ private ResellerViewModel resellerViewModel;
             finish();
             return true;
         }else if(item.getItemId()==R.id.orders){
-            startActivity(new Intent(ResellerActivity.this,StatusOfOrders.class));
+            startActivity(new Intent(ResellerActivity.this, StatusOfOrdersActivity.class));
         }else if(item.getItemId()==R.id.logout){
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ResellerActivity.this);
             SharedPreferences.Editor editor=prefs.edit();
             editor.putBoolean("loggedInReseller",false);
             editor.apply();
-            startActivity(new Intent(ResellerActivity.this,UserLogin.class));
+            startActivity(new Intent(ResellerActivity.this, UserLoginActivity.class));
             finish();
         }
         return super.onOptionsItemSelected(item);

@@ -1,4 +1,4 @@
-package com.example.ressho;
+package com.example.ressho.networking;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

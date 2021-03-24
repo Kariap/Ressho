@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="12dp"
-    tools:context=".UserLogin">
+    tools:context=".activities.UserLoginActivity">
     <ImageView
         android:id="@+id/icon"
         app:srcCompat="@drawable/ic_baseline_shopping_cart_24_primary"
