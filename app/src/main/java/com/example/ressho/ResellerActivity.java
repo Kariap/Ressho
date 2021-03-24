@@ -31,7 +31,7 @@ private ProductsResellerAdapters productsAdapter;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reseller);
         ActionBar actionBar=getSupportActionBar();
-        actionBar.setTitle("Hi Suresh!");
+        actionBar.setTitle("Hi Pallav!");
         actionBar.setDisplayHomeAsUpEnabled(true);
         rvProducts=findViewById(R.id.rv_products_all);
         productsAdapter=new ProductsResellerAdapters();
