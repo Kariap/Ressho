@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -65,6 +66,8 @@ private ProductsResellerAdapters productsAdapter;
         if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
+        }else if(item.getItemId()==R.id.orders){
+            startActivity(new Intent(ResellerActivity.this,StatusOfOrders.class));
         }
         return super.onOptionsItemSelected(item);
     }
