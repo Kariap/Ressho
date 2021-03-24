@@ -11,7 +11,7 @@ import android.preference.PreferenceManager;
 import com.example.ressho.R;
 
 public class SplashScreen extends AppCompatActivity {
-
+    //This is a splashScreen this activity manages user session.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,9 +21,10 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SplashScreen.this);
-
-                boolean loggedINSeller=prefs.getBoolean("loggedInSeller", false);
-                boolean loggedINReseller=prefs.getBoolean("loggedInReseller", false);
+                //checks if a seller/reseller is logged in or not and if true then starts appropriate activity.
+                //Only one user can login at a time.
+                boolean loggedINSeller=prefs.getBoolean(UserLoginActivity.KEY_IS_SELLER_LOGGED_IN, false);
+                boolean loggedINReseller=prefs.getBoolean(UserLoginActivity.KEY_IS_RESELLER_LOGGED_IN, false);
 
                 if(loggedINSeller){
                     Intent i = new Intent(SplashScreen.this, SellerActivity.class);

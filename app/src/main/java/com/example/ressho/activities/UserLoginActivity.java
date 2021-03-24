@@ -22,12 +22,15 @@ import java.io.UnsupportedEncodingException;
 import retrofit2.Response;
 
 public class UserLoginActivity extends AppCompatActivity {
+    public static final String KEY_IS_RESELLER_LOGGED_IN = "loggedInReseller";
+    public static final String KEY_IS_SELLER_LOGGED_IN = "loggedInSeller";
     private Button btnSellerLogin;
     private Button btnResellerLogin;
     private EditText userName;
     private EditText password;
     private UserLoginViewModel loginViewModel;
-    //TODO:show dialog box while loggin in.
+    //This activity handles user login.User can log in as seller or reseller by pressing respective buttons after
+    //entering username and password.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,14 +43,14 @@ public class UserLoginActivity extends AppCompatActivity {
         btnResellerLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login(userName.getText().toString(),password.getText().toString(),"loggedInReseller");
+                login(userName.getText().toString(),password.getText().toString(), KEY_IS_RESELLER_LOGGED_IN);
             }
         });
 
         btnSellerLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login(userName.getText().toString(),password.getText().toString(),"loggedInSeller");
+                login(userName.getText().toString(),password.getText().toString(), KEY_IS_SELLER_LOGGED_IN);
             }
         });
     }
@@ -58,6 +61,8 @@ public class UserLoginActivity extends AppCompatActivity {
         loginViewModel.login(encodedString).observe(this, new Observer<Response>() {
             @Override
             public void onChanged(Response response) {
+                //Server sends status code 200 with response body if authentication is successful.
+                //If not show error message.
                 if (response.code() == 200) {
                     setPrefForLoggedInType(type);
                     if (type.equals("loggedInReseller")) {
@@ -75,7 +80,7 @@ public class UserLoginActivity extends AppCompatActivity {
         });
 
     }
-
+    //encodes userName:password as base64 to pass in as header.
     private String getEncodedString(String userName, String password) {
         String unifiedUsernameAndPassword=userName+":"+password;
         byte[] data = new byte[0];
@@ -85,8 +90,7 @@ public class UserLoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         String base64 = Base64.encodeToString(data, Base64.NO_WRAP);
-        String encodedString="basic " + base64;
-        return encodedString;
+        return "basic " + base64;
     }
 
     private void setPrefForLoggedInType(String type) {

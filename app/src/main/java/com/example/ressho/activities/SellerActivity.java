@@ -31,6 +31,9 @@ public class SellerActivity extends AppCompatActivity {
     private ProductsSellerAdapters sellerProductAdapter;
     private FloatingActionButton btnAddProduct;
     private SellerViewModel sellerViewModel;
+    //This activity displays all the product by the logged in seller.
+    //Seller can remove the item from listing or share it on social media.
+    //Seller can also add new product/order by clicking + button on screen.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,9 +85,10 @@ public class SellerActivity extends AppCompatActivity {
             finish();
             return true;
         }else if(item.getItemId()==R.id.logout){
+            //Sets appropriate sharedPreference as false and returns user to login page.
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SellerActivity.this);
             SharedPreferences.Editor editor=prefs.edit();
-            editor.putBoolean("loggedInSeller",false);
+            editor.putBoolean(UserLoginActivity.KEY_IS_SELLER_LOGGED_IN,false);
             editor.apply();
             startActivity(new Intent(SellerActivity.this, UserLoginActivity.class));
             finish();

@@ -49,8 +49,7 @@ public class ResshoRepository {
         return products;
     }
     public LiveData<Response> login(String encodedString){
-        RetrofitService.getRetrofitInstanceForLogin().create(ResshoAPI.class)
-                .login(encodedString).enqueue(new Callback<ResponseBody>() {
+        resshoAPILogin.login(encodedString).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.d("response Code",""+response.code());

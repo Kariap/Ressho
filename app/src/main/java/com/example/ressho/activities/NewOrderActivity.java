@@ -20,7 +20,7 @@ public class NewOrderActivity extends AppCompatActivity {
     private Button placeOrder;
     private Button cancel;
     private Boolean cashOnDelivery=false;
-    //TODO:add validation for details
+    //This activity handles placing of an order by reseller.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +32,7 @@ public class NewOrderActivity extends AppCompatActivity {
         rgPaymentMethod=findViewById(R.id.payment_options);
         placeOrder=findViewById(R.id.place_order);
         cancel=findViewById(R.id.cancel_order);
+        //user can select one of the payment methods:online/COD.
         rgPaymentMethod.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -56,6 +57,7 @@ public class NewOrderActivity extends AppCompatActivity {
                 String customerName=etCustomerName.getText().toString();
                 String customerAddress=etCustomerAddress.getText().toString();
                 if(areDetailsValid(customerName,customerAddress,price,cashOnDelivery)){
+                    //Post request will be made here to place the order.
                     Toast.makeText(NewOrderActivity.this,"Order placed.",Toast.LENGTH_LONG).show();
                     finish();
                 }else{
@@ -65,7 +67,7 @@ public class NewOrderActivity extends AppCompatActivity {
         });
 
     }
-
+    //Details should not be empty.
     private Boolean areDetailsValid(String customerName, String customerAddress, String price, Boolean cashOnDelivery) {
         return !customerAddress.isEmpty() && !customerName.isEmpty() && !price.isEmpty();
     }

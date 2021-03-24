@@ -20,7 +20,7 @@ public class AddProductActivity extends AppCompatActivity {
     private Button cancel;
     private Button add;
     private AddProductViewModel addProductViewModel;
-
+    //This activity handles addition of new Product by the seller.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +38,7 @@ public class AddProductActivity extends AppCompatActivity {
                 String p_name=productName.getText().toString();
                 String p_price=productPrice.getText().toString();
                 String p_mrp=productMrp.getText().toString();
+                //This validates the details and then sends a post request to api for registering/adding the product.
                 addProductViewModel.validateAndPostProduct(p_name,p_price,p_mrp);
             }
         });
@@ -52,12 +53,11 @@ public class AddProductActivity extends AppCompatActivity {
             public void onChanged(String message) {
                 if(message!=null){
                     Toast.makeText(AddProductActivity.this,message,Toast.LENGTH_LONG).show();
-                    addProductViewModel.setMessageShownAsTrue();
+                    //This is done to prevent message from popping again when orientation change happens.
+                    //setMessageAsNull sets message to null once after the message is shown,so the above condition is not met.
+                    addProductViewModel.setMessageAsNull();
                 }
             }
         });
-
-
-
     }
 }

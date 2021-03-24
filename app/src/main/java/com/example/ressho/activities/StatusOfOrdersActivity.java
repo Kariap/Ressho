@@ -21,6 +21,7 @@ public class StatusOfOrdersActivity extends AppCompatActivity {
     private RecyclerView rvOrders;
     private OrdersAdapter ordersAdapter;
     private StatusOfOrdersViewModel statusOfOrdersViewModel;
+    //This Activity lists all the orders place by the reseller and their statuses.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
