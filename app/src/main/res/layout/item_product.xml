@@ -124,7 +124,7 @@
                 android:textAllCaps="false"
                 android:textSize="@dimen/button_text_small"
                 android:textColor="@android:color/white"
-                android:text="@string/add_to_cart"
+                android:text="Order"
                 android:background="@drawable/rounded_corners"
                 android:id="@+id/add_to_cart"
                 android:layout_margin="4dp"
