@@ -71,4 +71,19 @@ public class ResshoRepository {
         });
         return loginResponse;
     }
+
+    public LiveData<List<Product>> getProductsReseller() {
+        resshoAPI.getProducts().enqueue(new Callback<ProductsResponse>() {
+            @Override
+            public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
+                products.setValue(response.body().getProducts());
+            }
+
+            @Override
+            public void onFailure(Call<ProductsResponse> call, Throwable t) {
+                products.setValue(null);
+            }
+        });
+        return products;
+    }
 }

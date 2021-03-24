@@ -1,26 +1,28 @@
 package com.example.ressho.viewmodels;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.ressho.models.Product;
 import com.example.ressho.repository.ResshoRepository;
+
+import java.util.List;
 
 import retrofit2.Response;
 
-public class UserLoginViewModel extends ViewModel {
+public class ResellerViewModel extends ViewModel {
     private ResshoRepository repo=ResshoRepository.getInstance();
-    private LiveData<Response> response;
-    public UserLoginViewModel() {
+    private LiveData<List<Product>> products;
+    public ResellerViewModel() {
         super();
+        products=repo.getProductsReseller();
     }
     @Override
     protected void onCleared() {
         super.onCleared();
     }
-    public LiveData<Response> login(String encodedString){
-        response=repo.login(encodedString);
-        return response;
-    }
 
+    public LiveData<List<Product>> getProducts(){
+        return products;
+    }
 }

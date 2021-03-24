@@ -3,6 +3,7 @@ package com.example.ressho;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,7 +52,7 @@ public class SellerActivity extends AppCompatActivity {
         rvProducts.setAdapter(sellerProductAdapter);
         rvProducts.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         btnAddProduct=findViewById(R.id.add_product);
-        sellerViewModel=new SellerViewModel();
+        sellerViewModel=new ViewModelProvider(this).get(SellerViewModel.class);
         sellerViewModel.getSellerProducts("pallav").observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {

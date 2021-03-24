@@ -2,6 +2,8 @@ package com.example.ressho;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +19,11 @@ import android.view.View;
 
 import com.example.ressho.adapters.ProductsResellerAdapters;
 import com.example.ressho.api.ResshoAPI;
+import com.example.ressho.models.Product;
 import com.example.ressho.responses.ProductsResponse;
+import com.example.ressho.viewmodels.ResellerViewModel;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,6 +32,7 @@ import retrofit2.Response;
 public class ResellerActivity extends AppCompatActivity {
 private RecyclerView rvProducts;
 private ProductsResellerAdapters productsAdapter;
+private ResellerViewModel resellerViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +46,13 @@ private ProductsResellerAdapters productsAdapter;
         rvProducts.setAdapter(productsAdapter);
         rvProducts.setLayoutManager(new LinearLayoutManager(this));
         rvProducts.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        ResshoAPI apiClient= RetrofitService.getRetrofitInstance().create(ResshoAPI.class);
-        apiClient.getProducts().enqueue(new Callback<ProductsResponse>() {
+        resellerViewModel=new ViewModelProvider(this).get(ResellerViewModel.class);
+        resellerViewModel.getProducts().observe(this, new Observer<List<Product>>() {
             @Override
-            public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
+            public void onChanged(List<Product> products) {
                 findViewById(R.id.progress).setVisibility(View.GONE);
                 rvProducts.setVisibility(View.VISIBLE);
-                ProductsResponse productsResponse=response.body();
-                productsAdapter.setProducts(productsResponse.getProducts());
-            }
-
-            @Override
-            public void onFailure(Call<ProductsResponse> call, Throwable t) {
-
+                productsAdapter.setProducts(products);
             }
         });
     }

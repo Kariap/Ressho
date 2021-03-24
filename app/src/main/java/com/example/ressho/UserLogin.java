@@ -36,7 +36,7 @@ public class UserLogin extends AppCompatActivity {
         btnSellerLogin=findViewById(R.id.btn_seller_login);
         userName=findViewById(R.id.et_username);
         password=findViewById(R.id.et_password);
-        loginViewModel=new UserLoginViewModel();
+        loginViewModel=new ViewModelProvider(this).get(UserLoginViewModel.class);
         btnResellerLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
