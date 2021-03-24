@@ -7,6 +7,8 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.GET;
+import retrofit2.http.HEAD;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -23,4 +25,7 @@ public interface ResshoAPI {
 
     @GET("/reseller/orders")
     Call<OrdersResponse> getResellerOrders(@Query("reseller") String reseller);
+
+    @GET("/basic-auth")
+    Call<ResponseBody> login(@Header("Authorization") String basicToken);
 }

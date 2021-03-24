@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -68,6 +70,13 @@ private ProductsResellerAdapters productsAdapter;
             return true;
         }else if(item.getItemId()==R.id.orders){
             startActivity(new Intent(ResellerActivity.this,StatusOfOrders.class));
+        }else if(item.getItemId()==R.id.logout){
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ResellerActivity.this);
+            SharedPreferences.Editor editor=prefs.edit();
+            editor.putBoolean("loggedInReseller",false);
+            editor.apply();
+            startActivity(new Intent(ResellerActivity.this,UserLogin.class));
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

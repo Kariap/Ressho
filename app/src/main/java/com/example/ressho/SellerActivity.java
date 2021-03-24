@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -80,6 +82,13 @@ public class SellerActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
+        }else if(item.getItemId()==R.id.logout){
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SellerActivity.this);
+            SharedPreferences.Editor editor=prefs.edit();
+            editor.putBoolean("loggedInSeller",false);
+            editor.apply();
+            startActivity(new Intent(SellerActivity.this,UserLogin.class));
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
