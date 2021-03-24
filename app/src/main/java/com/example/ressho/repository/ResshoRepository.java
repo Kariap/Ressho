@@ -3,17 +3,20 @@ package com.example.ressho.repository;
 import android.content.Intent;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.ressho.R;
 import com.example.ressho.ResellerActivity;
 import com.example.ressho.RetrofitService;
 import com.example.ressho.SellerActivity;
 import com.example.ressho.UserLogin;
 import com.example.ressho.api.ResshoAPI;
 import com.example.ressho.models.Product;
+import com.example.ressho.responses.ProductsResponse;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -37,7 +40,18 @@ public class ResshoRepository {
     public static ResshoRepository getInstance(){
         return repo;
     }
-    public LiveData<List<Product>> getProductsForSeller(){
+    public LiveData<List<Product>> getProductsForSeller(String sellerID){
+        resshoAPI.getSellerProducts(sellerID).enqueue(new Callback<ProductsResponse>() {
+            @Override
+            public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
+               products.setValue(response.body().getProducts());
+            }
+
+            @Override
+            public void onFailure(Call<ProductsResponse> call, Throwable t) {
+                products.setValue(null);
+            }
+        });
         return products;
     }
     public LiveData<Response> login(String encodedString){

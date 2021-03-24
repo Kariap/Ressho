@@ -2,6 +2,7 @@ package com.example.ressho;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,11 +15,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.ressho.adapters.ProductsSellerAdapters;
 import com.example.ressho.api.ResshoAPI;
+import com.example.ressho.models.Product;
 import com.example.ressho.responses.ProductsResponse;
+import com.example.ressho.viewmodels.SellerViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,6 +34,7 @@ public class SellerActivity extends AppCompatActivity {
     private RecyclerView rvProducts;
     private ProductsSellerAdapters sellerProductAdapter;
     private FloatingActionButton btnAddProduct;
+    private SellerViewModel sellerViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,27 +51,23 @@ public class SellerActivity extends AppCompatActivity {
         rvProducts.setAdapter(sellerProductAdapter);
         rvProducts.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         btnAddProduct=findViewById(R.id.add_product);
-
+        sellerViewModel=new SellerViewModel();
+        sellerViewModel.getSellerProducts("pallav").observe(this, new Observer<List<Product>>() {
+            @Override
+            public void onChanged(List<Product> products) {
+                if(products!=null) {
+                    rvProducts.setVisibility(View.VISIBLE);
+                    findViewById(R.id.progress_circular).setVisibility(View.GONE);
+                    sellerProductAdapter.setProducts(products);
+                }else{
+                    Toast.makeText(SellerActivity.this,"Please check your internet connection",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
         btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SellerActivity.this,AddProduct.class));
-            }
-        });
-
-        ResshoAPI resshoAPI= RetrofitService.getRetrofitInstance().create(ResshoAPI.class);
-        resshoAPI.getSellerProducts("pallav").enqueue(new Callback<ProductsResponse>() {
-            @Override
-            public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
-                rvProducts.setVisibility(View.VISIBLE);
-                findViewById(R.id.progress_circular).setVisibility(View.GONE);
-                ProductsResponse productsResponse=response.body();
-                sellerProductAdapter.setProducts(productsResponse.getProducts());
-            }
-
-            @Override
-            public void onFailure(Call<ProductsResponse> call, Throwable t) {
-
             }
         });
 
