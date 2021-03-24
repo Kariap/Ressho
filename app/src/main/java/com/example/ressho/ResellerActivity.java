@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,10 +14,7 @@ import android.view.View;
 
 import com.example.ressho.adapters.ProductsResellerAdapters;
 import com.example.ressho.api.ResshoAPI;
-import com.example.ressho.models.Product;
 import com.example.ressho.responses.ProductsResponse;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,11 +32,11 @@ private ProductsResellerAdapters productsAdapter;
         actionBar.setTitle("Hi Pallav!");
         actionBar.setDisplayHomeAsUpEnabled(true);
         rvProducts=findViewById(R.id.rv_products_all);
-        productsAdapter=new ProductsResellerAdapters();
+        productsAdapter=new ProductsResellerAdapters(this);
         rvProducts.setAdapter(productsAdapter);
         rvProducts.setLayoutManager(new LinearLayoutManager(this));
         rvProducts.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        ResshoAPI apiClient=RetrofitInstance.getRetrofitInstance().create(ResshoAPI.class);
+        ResshoAPI apiClient= RetrofitService.getRetrofitInstance().create(ResshoAPI.class);
         apiClient.getProducts().enqueue(new Callback<ProductsResponse>() {
             @Override
             public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {

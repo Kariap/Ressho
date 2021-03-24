@@ -18,7 +18,6 @@ import com.example.ressho.api.ResshoAPI;
 import com.example.ressho.responses.ProductsResponse;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,7 +50,7 @@ public class SellerActivity extends AppCompatActivity {
             }
         });
 
-        ResshoAPI resshoAPI=RetrofitInstance.getRetrofitInstance().create(ResshoAPI.class);
+        ResshoAPI resshoAPI= RetrofitService.getRetrofitInstance().create(ResshoAPI.class);
         resshoAPI.getSellerProducts("pallav").enqueue(new Callback<ProductsResponse>() {
             @Override
             public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
