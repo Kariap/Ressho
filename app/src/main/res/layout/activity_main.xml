@@ -6,7 +6,14 @@
     android:layout_height="match_parent"
     android:layout_margin="12dp"
     tools:context=".UserLogin">
-    
+    <ImageView
+        android:id="@+id/icon"
+        app:srcCompat="@drawable/ic_baseline_shopping_cart_24_primary"
+        app:layout_constraintBottom_toTopOf="@id/login_instruction"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
     <TextView
         android:layout_margin="@dimen/margin_16"
         app:layout_constraintVertical_bias="0.2"

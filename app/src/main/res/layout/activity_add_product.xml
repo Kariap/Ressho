@@ -9,6 +9,7 @@
     android:layout_height="wrap_content"
     tools:context=".AddProduct">
     <TextView
+        android:textColor="@color/colorPrimary"
         android:textSize="28sp"
         android:fontFamily="sans-serif-black"
         app:layout_constraintLeft_toLeftOf="parent"
