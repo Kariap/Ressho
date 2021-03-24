@@ -1,8 +1,11 @@
 package com.example.ressho.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +19,12 @@ import java.util.List;
 
 public class ProductsSellerAdapters extends RecyclerView.Adapter<ProductsSellerAdapters.ProductViewHolder> {
     private List<Product> products=new ArrayList<>();
+    private Context context;
+
+    public ProductsSellerAdapters(Context context) {
+        this.context = context;
+    }
+
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,6 +42,17 @@ public class ProductsSellerAdapters extends RecyclerView.Adapter<ProductsSellerA
         holder.productRatings.setText(product.getRating().toString());
         holder.productName.setText(product.getProductName());
         holder.productMRP.setText("\u20B9 "+product.getProductMRP());
+        holder.shareNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                String shareBody = "Hey there!Check out "+product.getProductName()+" by "+product.getSeller()+" @ \u20B9 "+product.getPrice();
+                intent.setType("text/plain");
+                intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
+                intent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                context.startActivity(Intent.createChooser(intent,"Share"));
+            }
+        });
     }
     public void setProducts(List<Product> products) {
         this.products=products;
@@ -49,6 +69,7 @@ public class ProductsSellerAdapters extends RecyclerView.Adapter<ProductsSellerA
         private TextView productName;
         private TextView productRatings;
         private TextView productMRP;
+        private Button shareNow;
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             sellerName=itemView.findViewById(R.id.product_seller);
@@ -56,6 +77,7 @@ public class ProductsSellerAdapters extends RecyclerView.Adapter<ProductsSellerA
             productName=itemView.findViewById(R.id.product_name);
             productRatings=itemView.findViewById(R.id.product_ratings);
             productMRP=itemView.findViewById(R.id.product_mrp);
+            shareNow=itemView.findViewById(R.id.share_product);
         }
     }
 }
