@@ -40,7 +40,6 @@ public class SellerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_seller);
 
         ActionBar actionBar=getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Hi Pallav!");
 
         rvProducts=findViewById(R.id.rv_products_by_seller);
@@ -81,10 +80,7 @@ public class SellerActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(final MenuItem item) {
 
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
-        }else if(item.getItemId()==R.id.logout){
+         if(item.getItemId()==R.id.logout){
             //Sets appropriate sharedPreference as false and returns user to login page.
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SellerActivity.this);
             SharedPreferences.Editor editor=prefs.edit();

@@ -27,6 +27,7 @@ public class StatusOfOrdersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status_of_orders);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Orders");
         rvOrders=findViewById(R.id.rv_orders);
         rvOrders.setLayoutManager(new LinearLayoutManager(this));
         rvOrders.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));

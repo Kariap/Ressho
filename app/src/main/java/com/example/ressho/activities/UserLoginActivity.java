@@ -65,7 +65,7 @@ public class UserLoginActivity extends AppCompatActivity {
                 //If not show error message.
                 if (response.code() == 200) {
                     setPrefForLoggedInType(type);
-                    if (type.equals("loggedInReseller")) {
+                    if (type.equals(UserLoginActivity.KEY_IS_RESELLER_LOGGED_IN)) {
                         startActivity(new Intent(UserLoginActivity.this, ResellerActivity.class));
                     } else {
                         startActivity(new Intent(UserLoginActivity.this, SellerActivity.class));

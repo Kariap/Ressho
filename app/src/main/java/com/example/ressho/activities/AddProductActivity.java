@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +21,6 @@ public class AddProductActivity extends AppCompatActivity {
     private EditText productName;
     private EditText productPrice;
     private EditText productMrp;
-    private Button cancel;
     private Button add;
     private AddProductViewModel addProductViewModel;
     //This activity handles addition of new Product by the seller.
@@ -28,9 +31,9 @@ public class AddProductActivity extends AppCompatActivity {
         productName=findViewById(R.id.et_product_name);
         productMrp=findViewById(R.id.et_product_mrp);
         productPrice=findViewById(R.id.et_product_price);
-
+        getSupportActionBar().setTitle("Add Product");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         add=findViewById(R.id.add_product_by_seller);
-        cancel=findViewById(R.id.cancel_button);
         addProductViewModel=new ViewModelProvider(this).get(AddProductViewModel.class);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,12 +45,7 @@ public class AddProductActivity extends AppCompatActivity {
                 addProductViewModel.validateAndPostProduct(p_name,p_price,p_mrp);
             }
         });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
         addProductViewModel.getMessage().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String message) {
@@ -59,5 +57,14 @@ public class AddProductActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

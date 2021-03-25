@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/icon"
-        app:srcCompat="@drawable/ic_baseline_shopping_cart_24"
+        app:srcCompat="@drawable/ic_noun_shop_3282511"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

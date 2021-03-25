@@ -37,7 +37,6 @@ private ResellerViewModel resellerViewModel;
         setContentView(R.layout.activity_reseller);
         ActionBar actionBar=getSupportActionBar();
         actionBar.setTitle("Hi Pallav!");
-        actionBar.setDisplayHomeAsUpEnabled(true);
         rvProducts=findViewById(R.id.rv_products_all);
         productsAdapter=new ProductsResellerAdapters(this);
         rvProducts.setAdapter(productsAdapter);
@@ -63,10 +62,7 @@ private ResellerViewModel resellerViewModel;
 
     public boolean onOptionsItemSelected(final MenuItem item) {
 
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
-        }else if(item.getItemId()==R.id.orders){
+        if(item.getItemId()==R.id.orders){
             startActivity(new Intent(ResellerActivity.this, StatusOfOrdersActivity.class));
         }else if(item.getItemId()==R.id.logout){
             //Sets appropriate sharedPreference as false and returns user to login page.

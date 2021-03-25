@@ -7,8 +7,9 @@
     xmlns:tools="http://schemas.android.com/tools">
     <ImageView
         android:layout_marginLeft="4dp"
+        android:scaleType="centerInside"
         android:background="@drawable/rounded_corners_et"
-        app:srcCompat="@drawable/ic_launcher_background"
+        app:srcCompat="@drawable/ic_noun_package_2425860"
         android:id="@+id/order_photo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -17,7 +18,7 @@
     <TextView
         android:fontFamily="sans-serif-black"
         android:layout_marginLeft="12dp"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:id="@+id/order_name"
         app:layout_constraintLeft_toRightOf="@id/order_photo"
         tools:text="Silky blue Saree"
@@ -27,7 +28,7 @@
         android:layout_height="wrap_content"/>
     <TextView
         android:layout_marginLeft="12dp"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:id="@+id/order_customer_name"
         android:fontFamily="sans-serif-light"
         app:layout_constraintLeft_toRightOf="@id/order_photo"
@@ -38,7 +39,7 @@
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/order_status"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:gravity="center"
         android:text="Delivered"
         android:textColor="@android:color/white"
@@ -73,15 +74,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <LinearLayout
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/order_rating"
+        app:layout_constraintTop_toBottomOf="@id/order_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
             android:layout_margin="4dp"
             android:textAllCaps="false"
-            android:textSize="@dimen/button_text_small"
+            android:textSize="16sp"
             android:textColor="@android:color/white"
             android:text="Write Review"
             android:background="@drawable/rounded_corners"
@@ -93,7 +94,7 @@
         <Button
             android:layout_margin="4dp"
             android:textAllCaps="false"
-            android:textSize="@dimen/button_text_small"
+            android:textSize="16sp"
             android:textColor="@android:color/white"
             android:text="Return Order"
             android:background="@drawable/rounded_corners"

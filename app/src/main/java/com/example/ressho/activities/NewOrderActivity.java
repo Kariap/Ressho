@@ -26,6 +26,7 @@ public class NewOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_order);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("New Order");
         etPrice=findViewById(R.id.et_customer_price);
         etCustomerAddress=findViewById(R.id.et_customer_address);
         etCustomerName=findViewById(R.id.et_customer_name);
